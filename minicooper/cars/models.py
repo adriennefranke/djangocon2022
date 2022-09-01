@@ -10,5 +10,5 @@ for i in range(1969, datetime.now().year):
 class Car(models.Model):
 	model_name = models.CharField("Model Name", max_length=255, blank=False)
 	year_released = models.IntegerField("Year Released", choices=YEAR_CHOICES)
-	msrp = models.DecimalField("MSRP", max_digits=6, decimal_places=2)
+	msrp = models.DecimalField("MSRP", max_digits=8, decimal_places=2)
 
