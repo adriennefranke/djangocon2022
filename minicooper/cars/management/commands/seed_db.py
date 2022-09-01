@@ -69,6 +69,9 @@ def create_carpart_data():
     carpart = CarPart(part_name=random.choice(carpart_names), part_price=random.choice(carpart_prices))
     carpart.save()
 
+    carparts = CarParts.objects.all()
+    cars = Car.objects.all()
+
 def seed_database(self):
     '''
     Clear database and then seed it

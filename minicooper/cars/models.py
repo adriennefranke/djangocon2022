@@ -12,3 +12,6 @@ class Car(models.Model):
 	year_released = models.IntegerField("Year Released", choices=YEAR_CHOICES)
 	msrp = models.DecimalField("MSRP", max_digits=8, decimal_places=2)
 
+	def __str__(self):
+		return f'{self.year_released} {self.model_name}'
+

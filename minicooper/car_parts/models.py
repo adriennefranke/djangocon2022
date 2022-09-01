@@ -9,6 +9,9 @@ class CarPart(models.Model):
 	class Meta:
 		verbose_name = "Car Part"
 
+	def __str__(self):
+		return f'{self.part_name}'
+
 class CarPartCar(models.Model):
 	car_part = models.ForeignKey("CarPart", verbose_name="Car Part", on_delete=models.PROTECT)
 	car = models.ForeignKey(Car, on_delete=models.PROTECT)
