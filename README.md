@@ -1,0 +1,1 @@
+# DjangoCon 2022 - The Django Admin Is Your Oyster
