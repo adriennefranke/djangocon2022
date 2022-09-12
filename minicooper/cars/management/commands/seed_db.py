@@ -69,8 +69,17 @@ def create_carpart_data():
     carpart = CarPart(part_name=random.choice(carpart_names), part_price=random.choice(carpart_prices))
     carpart.save()
 
-    carparts = CarParts.objects.all()
+def create_carpartcar_data():
+    '''
+    Creates car part car data
+    '''
+    logging.info("Creating CarPartCar data...")
+    carparts = CarPart.objects.all()
     cars = Car.objects.all()
+
+    carpartcar = CarPartCar(car=random.choice(cars), car_part=random.choice(carparts))
+
+    carpartcar.save()
 
 def seed_database(self):
     '''
@@ -90,3 +99,7 @@ def seed_database(self):
     # Create car part data
     for i in range(3000):
         create_carpart_data()
+
+    # Create car part car data
+    for i in range(5000):
+        create_carpartcar_data()
