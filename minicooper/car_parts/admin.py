@@ -29,8 +29,8 @@ class CarPartAdmin(admin.ModelAdmin):
 	search_fields = ('part_name',)
 	
 	def save_model(self, request, obj, form, change):
-		# insert function here that you want to happen when the box is checked
 		if form.cleaned_data.get('expand_prices_to_cars_with_this_part'):
+			# insert function here that you want to happen when the box is checked
 			
 			car_part_id = obj.id
 			price_difference = form.cleaned_data.get('price_difference')

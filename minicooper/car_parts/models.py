@@ -6,6 +6,8 @@ class CarPart(models.Model):
 	part_name = models.CharField("Part Name", max_length=255, blank=False)
 	part_price = models.DecimalField("Part Price", max_digits=8, decimal_places=2)
 
+	admin_help_text = "Use this page to adjust the price of a car part."
+
 	class Meta:
 		verbose_name = "Car Part"
 
