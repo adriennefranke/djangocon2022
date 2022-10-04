@@ -11,14 +11,13 @@ If you attend this talk, you’ll walk away with the following:
 - A sense of excitement about the Django Admin!
 - A new mindset for how to customize the Django Admin to your needs
 
-
 ## Get the app up and running
 
 1. Install Poetry
 2. Use Poetry to install Django
 3. Create superuser
-` poetry run python manage.py createsuperuser`
+> poetry run python manage.py createsuperuser
 4. Seed database
 5. Run the app
-` poetry run python manage.py runserver`
-6. Navigate to localhost:8000/admin in your browser and login with your superuser account
+> poetry run python manage.py runserver
+6. Navigate to `localhost:8000/admin` in your browser and login with your superuser account
