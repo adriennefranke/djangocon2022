@@ -15,7 +15,7 @@ class SaleAdmin(admin.ModelAdmin):
 	# 		return queryset, use_distinct
 	# 	else:
 	# 		return self.model.objects.filter(your filters here using search_term), use_distinct
-
+ 
 @admin.register(SandboxSale)
 class SandboxSaleAdmin(SandboxCustomModelAdmin):
 	list_display = ('car', 'sale_price', 'sale_date', )
