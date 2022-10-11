@@ -11,18 +11,15 @@ class CarPartForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		# This custom section changes the help_text for the expand_prices_to_cars_with_this_part field
 		super(CarPartForm, self).__init__(*args, **kwargs)
-		try:
-			car_part_id = kwargs["instance"].id
-			if CarPartCar.objects.filter(car_part_id=car_part_id).values_list('car_id', flat=True).first():
-				related_car_ids = CarPartCar.objects.filter(car_part_id=car_part_id).values_list("car_id")
-				cars_with_car_part = Car.objects.filter(id__in=related_car_ids).values_list("model_name", flat=True)
-				self.fields['expand_prices_to_cars_with_this_part'].help_text = "Cars with this CarPart: {}".format(', '.join(list(cars_with_car_part))) 
-			else:
-				self.fields['expand_prices_to_cars_with_this_part'].help_text = "There are no Cars that utilize this CarPart."
-		except KeyError:
-			pass
-		except AttributeError:
-			pass
+		car_part_id = kwargs.get("instance").id
+		
+		if CarPartCar.objects.filter(car_part_id=car_part_id).values_list('car_id', flat=True).first():
+			related_car_ids = CarPartCar.objects.filter(car_part_id=car_part_id).values_list("car_id")
+			cars_with_car_part = Car.objects.filter(id__in=related_car_ids).values_list("model_name", flat=True)
+			self.fields['expand_prices_to_cars_with_this_part'].help_text = "Cars with this CarPart: {}".format(', '.join(list(cars_with_car_part))) 
+		else:
+			self.fields['expand_prices_to_cars_with_this_part'].help_text = "There are no Cars that utilize this CarPart."
+		
 		
 	expand_prices_to_cars_with_this_part = forms.BooleanField(required=False)
 	class Meta:
@@ -35,7 +32,7 @@ class CarPartForm(forms.ModelForm):
 		if cleaned_data.get('part_price') <= 0.00:
 			raise forms.ValidationError("Part price must be greater than $0.00")
 
-		self.cleaned_data['price_difference'] = cleaned_data.get('part_price') - CarPart.objects.filter(id=self.instance.id).values_list('part_price', flat=True)[0]
+		self.cleaned_data['price_difference'] = cleaned_data.get('part_price') - CarPart.objects.filter(id=self.instance.id).values_list('part_price', flat=True).first()
 		self.cleaned_data['cars_with_part'] = CarPartCar.objects.filter(car_part=self.instance.id).values_list('car', flat=True)
 
 @admin.register(CarPart)

@@ -84,9 +84,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'dev': {
+    'sandbox': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'DEV',
+        'NAME': 'SANDBOX',
     }
 }
 
